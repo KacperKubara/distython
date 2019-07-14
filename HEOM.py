@@ -50,7 +50,7 @@ class HEOM():
         num_ix = np.setdiff1d(self.col_ix, self.cat_ix)
         num_ix = np.setdiff1d(num_ix, nan_ix)
         # Calculate the distance for numerical elements
-        results_array[num_ix] = np.abs(x[num_ix] - y[num_ix]) / self.range
+        results_array[num_ix] = np.abs(x[num_ix] - y[num_ix]) / self.range[num_ix]
         
         # Return the final result
         # Square root is not computed in practice

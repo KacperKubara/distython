@@ -30,9 +30,9 @@ class HEOM():
         results_array = np.zeros(x.shape)
 
         # Get indices for missing values, if any
-        nan_x_ix = np.argwhere(np.isin(x, self.nan_eqvs))
-        nan_y_ix = np.argwhere(np.isin(y, self.nan_eqvs))
-        nan_ix = np.unique(np.concatenate(nan_x_ix, nan_y_ix))
+        nan_x_ix = np.argwhere( np.logical_or(np.isin(x, self.nan_eqvs), np.isnan(x))).flatten()
+        nan_y_ix = np.argwhere( np.logical_or(np.isin(y, self.nan_eqvs), np.isnan(y))).flatten()
+        nan_ix = np.unique(np.concatenate((nan_x_ix, nan_y_ix)))
         # Calculate the distance for missing values elements
         results_array[nan_ix] = 1
 
@@ -42,12 +42,12 @@ class HEOM():
         results_array[cat_ix]= np.not_equal(x[cat_ix], y[cat_ix]) * 1 # use "* 1" to convert it into int
 
         # Get numerical indices without missing values elements
-        num_ix = np.setdiff1d(self.cat_ix, self.cat_ix)
+        num_ix = np.setdiff1d(self.col_ix, self.cat_ix)
         num_ix = np.setdiff1d(num_ix, nan_ix)
         # Calculate the distance for numerical elements
         results_array[num_ix] = np.abs(x[num_ix] - y[num_ix])/(self.col_max[num_ix] - self.col_min[num_ix])
         
         # Return the final result
         # Square root is not computed in practice
-        # As it doesn't change similarity of instances
+        # As it doesn't change similarity between instances
         return np.sum(np.square(results_array))

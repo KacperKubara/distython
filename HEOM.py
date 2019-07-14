@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import numpy as np
 class HEOM():
     def __init__(self, X, cat_ix, nan_equvialents = [np.nan, 0]):
@@ -53,4 +51,3 @@ class HEOM():
         # Square root is not computed in practice
         # As it doesn't change similarity between instances
         return np.sum(np.square(results_array))
->>>>>>> e0ecbc0... tested HEOM, ready to merge

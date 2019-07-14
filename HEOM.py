@@ -4,9 +4,6 @@ class HEOM():
         self.nan_eqvs = nan_equvialents
         self.cat_ix = cat_ix
         self.col_ix = [i for i in range(X.shape[1])]
-        # Get the max and min values for each col
-        self.col_max = np.nanmax(X, axis = 0)
-        self.col_min = np.nanmin(X, axis = 0)
         # Get the normalization scheme for numerical variables
         if normalised == "variance":
             self.range = 4* np.var(X, axis = 0)

@@ -9,6 +9,7 @@ pylint = "*"
 [packages]
 numpy = "*"
 pytest = "*"
+sklearn = "*"
 
 [requires]
 python_version = "3.7"

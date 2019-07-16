@@ -1,6 +1,7 @@
 import numpy as np
+
 class HEOM():
-    def __init__(self, X, cat_ix, nan_equvialents = [np.nan, 0], normalised="normal"):
+    def __init__(self, X, cat_ix, nan_equvialents = [np.nan], normalised="normal"):
         self.nan_eqvs = nan_equvialents
         self.cat_ix = cat_ix
         self.col_ix = [i for i in range(X.shape[1])]
@@ -15,7 +16,8 @@ class HEOM():
             self.range = np.nanmax(X, axis = 0) - np.nanmin(X, axis = 0)
     
     def heom(self, x, y):
-        """ Distance metric function which calculates the distance
+        """ Heterogeneous Euclidian Overlap Metric
+        Distance metric function which calculates the distance
         between two instances. Handles heterogeneous data and missing values.
         It can be used as a custom defined function for distance metrics
         in Scikit-Learn

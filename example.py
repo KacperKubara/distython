@@ -31,6 +31,6 @@ neighbor = NearestNeighbors(metric = heom_metric.heom)
 # Fit the model which uses the custom distance metric 
 neighbor.fit(boston_data)
 
-# Return the closest 5-Nearest Neighbors to the 1st instance (row 1)
+# Return 5-Nearest Neighbors to the 1st instance (row 1)
 result = neighbor.kneighbors(boston_data[0].reshape(1, -1), n_neighbors = 5)
 print(result)

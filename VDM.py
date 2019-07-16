@@ -1,11 +1,12 @@
 import numpy as np 
 
 class VDM():
-    def __init__(self, X, y, cat_ix):
+    def __init__(self, X, y_ix, cat_ix):
         self.cat_ix = cat_ix
         self.col_ix = [i for i in range(X.shape[1])]
-        
-        self.classes = np.unique(y)
+        self.y_ix = y_ix
+
+        self.classes = np.unique(X[:, y_ix])
         self.unique_attributes = np.zeros((1, len(self.col_ix)))
         self.unique_attributes_cnt = np.zeros(len(self.col_ix))
         # Get unique classes for each column at once
@@ -23,9 +24,9 @@ class VDM():
                 # For each output class value
                 for k, val in enumerate(self.classes):
                     # Get an attribute count for ach output class
-                    self.final_count[i, j, k] = X[y == val][:, col]
-                    pass
+                    self.final_count[i, j, k] = X[X[:, y_ix] == val][:, col]
                 # Get a sum of all occurences
+                self.final_count[i, j, -1] = np.sum(self.final_count[i, j, :])
 
 
 
@@ -50,14 +51,22 @@ class VDM():
         result: float
             Returns the result of the distance metrics function
         """
-        # count[col][attribute][class] or count[col][attribute][sum] 
-        for col in self.col_ix:
-            i = np.argwhere(self.unique_attributes[col] == x[col])
-            cond_prob_x = self.unique_attributes_cnt[col][i]/self.unique_attributes_cnt[col][-1]
-            
-            i = np.argwhere(self.unique_attributes[col] == y[col])
-            cond_prob_y = self.unique_attributes_cnt[col][i]/self.unique_attributes_cnt[col][-1]
+        result = np.zeros(len(x))
 
-        result = 0
-        return result
+        for i in range(len(self.cat_ix)):
+            # Get indices to access the final_count array 
+            x_ix = np.argwhere(self.final_count[i] == x[i])
+            y_ix = np.argwhere(self.final_count[i] == y[i])
+            
+            N_ax = self.final_count[i, x_ix, :-1]
+            N_ay = self.final_count[i, y_ix, :-1]
+            N_axc = self.final_count[i, x_ix]
+            N_ayc = self.final_count[i, y_ix]
+
+            temp_result = abs(N_ax/N_axc - N_ay/N_ayc)
+            temp_result = np.sum(temp_result)
+
+            result[i] = temp_result
+
+        return np.sum(result)
     

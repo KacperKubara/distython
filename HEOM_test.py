@@ -5,10 +5,10 @@ from HEOM import HEOM
 @pytest.fixture
 def params():
     return {'data': np.asarray([[1, np.nan, 5], [2, 2, 2], [1, 5, 3]]),
-             'col_ix': [0], 'nan_eqvs': [np.nan], 'result': [3.0, 1.44, 2.11]}
+             'cat_ix': [0], 'nan_eqvs': [np.nan], 'result': [3.0, 1.44, 2.11]}
 
 def test_init(params):
-    metric = HEOM(params['data'], params['col_ix'], params['nan_eqvs'])
+    metric = HEOM(params['data'], params['cat_ix'], params['nan_eqvs'])
     return metric
 
 def test_heom(params):

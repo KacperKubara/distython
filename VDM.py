@@ -7,16 +7,17 @@ class VDM():
         self.y_ix = y_ix
 
         self.classes = np.unique(X[:, y_ix])
-        self.unique_attributes = np.zeros((1, len(self.col_ix)))
-        self.unique_attributes_cnt = np.zeros(len(self.col_ix))
+        print(self.classes)
         # Get unique classes for each column at once
-        self.unique_attributes[:, self.cat_ix] = np.unique(X[self.cat_ix], axis=0)
+        self.unique_attributes = \
+            np.apply_along_axis(np.unique, axis=0, arr=X[:, self.cat_ix])
+        self.unique_attributes_cnt = np.zeros(len(self.col_ix))
 
         # Declare the 3D numpy array holding all of the data which
         # holds specifc count for each attribute for each column for each output class
         # +1 is to store the sum in the last element
-        self.final_count = np.zeros((len(self.col_ix), len(max(self.unique_attributes, key=len)[0], len(self.classes) + 1)))
-        
+        self.final_count = np.zeros((len(self.col_ix), self.unique_attributes.shape[0], len(self.classes) + 1))
+        print("final_count \n {}".format(self.final_count))
         # For each columns
         for i, col in enumerate(self.cat_ix):
             # For each attribute value in the column

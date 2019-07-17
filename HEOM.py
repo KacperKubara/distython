@@ -32,8 +32,8 @@ class HEOM():
         results_array = np.zeros(x.shape)
 
         # Get indices for missing values, if any
-        nan_x_ix = np.argwhere( np.logical_or(np.isin(x, self.nan_eqvs), np.isnan(x))).flatten()
-        nan_y_ix = np.argwhere( np.logical_or(np.isin(y, self.nan_eqvs), np.isnan(y))).flatten()
+        nan_x_ix = np.flatnonzero( np.logical_or(np.isin(x, self.nan_eqvs), np.isnan(x)))
+        nan_y_ix = np.flatnonzero( np.logical_or(np.isin(y, self.nan_eqvs), np.isnan(y)))
         nan_ix = np.unique(np.concatenate((nan_x_ix, nan_y_ix)))
         # Calculate the distance for missing values elements
         results_array[nan_ix] = 1

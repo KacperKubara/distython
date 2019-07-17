@@ -9,7 +9,6 @@ def params():
 
 def test_init(params):
     metric = HEOM(params['data'], params['col_ix'], params['nan_eqvs'])
-    assert (metric.col_max == [2, 5, 5]).all()
     return metric
 
 def test_heom(params):

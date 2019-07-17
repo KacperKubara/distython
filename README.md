@@ -1,9 +1,10 @@
 # heterogeneous_dist_metrics
 Implementation of state-of-the-art distance metrics from research papers which can handle mixed-type data and missing values
-At the moment, only HEOM tested and working. VDM is still under the development and can be found in the dev branch.
-
+At the moment, only HEOM is tested and fully working. VDM is still under the development and can be found in the dev branch.
+Please feel free to help and contribute to the project as there is a lack of existing implementations of hetergeneous distance metrics.
 # Installation
-Clone the repository with git clone.
+Clone the repository with `git clone`.
+Install the necessary packages with `pipenv install`
 
 # Example
 ```python

@@ -15,11 +15,11 @@ class VDM():
         for ix in self.cat_ix:
             print("np.unique(X[:, ix]): {}".format(np.unique(X[:, ix])))
             max_val = len(np.unique(X[:, ix]))
-            print("max_val: {}".format(max_val))
             if max_val > array_len:
                 array_len = max_val
+                print("max_val: {}".format(max_val))
         # Store the list of unique classes elements for each categorical column
-        self.unique_attributes = np.full((array_len, len(self.cat_ix)), fill_value=-1)
+        self.unique_attributes = np.full((array_len, len(self.col_ix)), fill_value=-1)
         print(self.unique_attributes)
         for ix in self.cat_ix:
             unique_vals = np.unique(X[:, ix])
@@ -36,15 +36,19 @@ class VDM():
         for i, col in enumerate(self.cat_ix):
             # For each attribute value in the column
             for j, attr in enumerate(self.unique_attributes[col]):
-                # For each output class value
-                for k, val in enumerate(self.classes):
-                    # Get an attribute count for each output class
-                    row_ix = np.argwhere(X[:, col] == attr)
-                    print("np.sum(X[row_ix, y_ix] == val): {}".format(np.sum(X[row_ix, y_ix] == val)))
-                    cnt = np.sum(X[row_ix, y_ix] == val)
-                    self.final_count[i, j, k] = cnt
-                # Get a sum of all occurences
-                self.final_count[i, j, -1] = np.sum(self.final_count[i, j, :])
+                if attr != -1:
+                    # For each output class value
+                    for k, val in enumerate(self.classes):
+                        # Get an attribute count for each output class
+                        row_ix = np.argwhere(X[:, col] == attr)
+                        print("np.sum(X[row_ix, y_ix] == val): {}".format(np.sum(X[row_ix, y_ix] == val)))
+                        cnt = np.sum(X[row_ix, y_ix] == val)
+                        self.final_count[i, j, k] = cnt
+                    # Get a sum of all occurences
+                    self.final_count[i, j, -1] = np.sum(self.final_count[i, j, :])
+        print("cat_ix: {}".format(cat_ix))
+        print("unique_attributes: {}".format(self.unique_attributes))
+        print("classes: {}".format(self.classes))        
         print("final_count: {}".format(self.final_count))
 
 

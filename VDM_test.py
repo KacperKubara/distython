@@ -1,5 +1,4 @@
 import pytest
-import pytest
 import numpy as np 
 from VDM import VDM
 

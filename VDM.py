@@ -7,17 +7,31 @@ class VDM():
         self.y_ix = y_ix
 
         self.classes = np.unique(X[:, y_ix])
-        print(self.classes)
-        # Get unique classes for each column at once
-        self.unique_attributes = \
-            np.apply_along_axis(np.unique, axis=0, arr=X[:, self.cat_ix])
+        print("self.classes: {}".format(self.classes))
+        print("X[:, self.cat_ix]: {}".format(X[:, self.cat_ix]))
+        
+        array_len = 0
+        # Get the max no. of unique classes for columns to initialize the array
+        for ix in self.cat_ix:
+            print("np.unique(X[:, ix]): {}".format(np.unique(X[:, ix])))
+            max_val = len(np.unique(X[:, ix]))
+            print("max_val: {}".format(max_val))
+            if max_val > array_len:
+                array_len = max_val
+        # Store the list of unique classes elements for each categorical column
+        self.unique_attributes = np.full((array_len, len(self.cat_ix)), fill_value=-1)
+        print(self.unique_attributes)
+        for ix in self.cat_ix:
+            unique_vals = np.unique(X[:, ix])
+            self.unique_attributes[0:len(unique_vals), ix] = unique_vals
+            print("unique vals: {}\n self.unique_attributes[:, ix]: {} \n".format(unique_vals, self.unique_attributes[:, ix]))
+        
         self.unique_attributes_cnt = np.zeros(len(self.col_ix))
-
-        # Declare the 3D numpy array holding all of the data which
-        # holds specifc count for each attribute for each column for each output class
+        # Declare the 3D numpy array which holds specifc count for each attribute
+        # for each column for each output class
         # +1 is to store the sum in the last element
         self.final_count = np.zeros((len(self.col_ix), self.unique_attributes.shape[0], len(self.classes) + 1))
-        print("final_count \n {}".format(self.final_count))
+        print("Initialized final_count \n {}".format(self.final_count))
         # For each columns
         for i, col in enumerate(self.cat_ix):
             # For each attribute value in the column

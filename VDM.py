@@ -5,7 +5,6 @@ class VDM():
         self.cat_ix = cat_ix
         self.col_ix = [i for i in range(X.shape[1])]
         self.y_ix = y_ix
-
         self.classes = np.unique(X[:, y_ix])
         
         array_len = 0
@@ -14,6 +13,7 @@ class VDM():
             max_val = len(np.unique(X[:, ix]))
             if max_val > array_len:
                 array_len = max_val
+                
         # Store the list of unique classes elements for each categorical column
         # self.col_ix is used here for clearer indices assignment
         self.unique_attributes = np.full((array_len, len(self.col_ix)), fill_value=-1)

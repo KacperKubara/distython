@@ -30,12 +30,12 @@ class VDM():
         # Declare the 3D numpy array which holds specifc count for each attribute
         # for each column for each output class
         # +1 in len(self.classes) + 1 is to store the sum (N_a,x) in the last element
-        self.final_count = np.zeros((len(self.col_ix), self.unique_attributes.shape[0], len(self.classes) + 1))
-        print("Initialized final_count \n {}".format(self.final_count))
-        # For each columns
+        self.final_count = np.zeros((len(self.col_ix), self.unique_attributes.shape[1], len(self.classes) + 1))
+        print("Initialized final_count shape: {} elements: \n {}".format(self.final_count.shape, self.final_count))
+        # For each column
         for i, col in enumerate(self.cat_ix):
             # For each attribute value in the column
-            for j, attr in enumerate(self.unique_attributes[col]):
+            for j, attr in enumerate(self.unique_attributes[:, col]):
                 if attr != -1:
                     # For each output class value
                     for k, val in enumerate(self.classes):
@@ -44,6 +44,7 @@ class VDM():
                         print("np.sum(X[row_ix, y_ix] == val): {}".format(np.sum(X[row_ix, y_ix] == val)))
                         cnt = np.sum(X[row_ix, y_ix] == val)
                         self.final_count[i, j, k] = cnt
+                        print(self.final_count)
                     # Get a sum of all occurences
                     self.final_count[i, j, -1] = np.sum(self.final_count[i, j, :])
         print("cat_ix: {}".format(cat_ix))

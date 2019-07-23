@@ -1,3 +1,8 @@
+"""
+This is alpha version of the VDM
+Initial tests suggest that it is working,
+but more tests have to be carried out to verify it
+"""
 import numpy as np 
 
 class VDM():
@@ -13,7 +18,7 @@ class VDM():
             max_val = len(np.unique(X[:, ix]))
             if max_val > array_len:
                 array_len = max_val
-                
+
         # Store the list of unique classes elements for each categorical column
         # self.col_ix is used here for clearer indices assignment
         self.unique_attributes = np.full((array_len, len(self.col_ix)), fill_value=-1)
@@ -78,7 +83,7 @@ class VDM():
                 temp_result = np.sum(temp_result)
             else:
                 ValueError("Division by zero is not allowed!")
-
             result[i] = temp_result
+
         return np.sum(result)
     

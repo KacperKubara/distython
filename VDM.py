@@ -1,8 +1,3 @@
-"""
-This is alpha version of the VDM
-Initial tests suggest that it is working,
-but more tests have to be carried out to verify it
-"""
 import numpy as np 
 
 class VDM():
@@ -82,7 +77,7 @@ class VDM():
                 temp_result = abs(N_axc/N_ax - N_ayc/N_ay)
                 temp_result = np.sum(temp_result)
             else:
-                ValueError("Division by zero is not allowed!")
+                print("Division by zero is not allowed!")
             result[i] = temp_result
 
         return np.sum(result)

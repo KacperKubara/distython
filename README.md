@@ -4,6 +4,7 @@ At the moment, HEOM, HVDM and VDM are tested and working. VDM and HVDM has been 
 Please feel free to help and contribute to the project as there is a lack of existing implementations of hetergeneous distance metrics.
 # Installation
 **Recommended:** `pip install distython`
+
 **Alternatively:**
 Clone the repository with `git clone`.
 Install the necessary packages with `pipenv install`

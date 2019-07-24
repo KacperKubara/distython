@@ -1,6 +1,30 @@
 import numpy as np
 class HEOM():
     def __init__(self, X, cat_ix, nan_equivalents = [np.nan, 0], normalised="normal"):
+        """ Heterogeneous Euclidean-Overlap Metric
+        Distance metric class which initializes the parameters
+        used in heom function
+        
+        Parameters
+        ----------
+        X : array-like of shape = [n_rows, n_features]
+            First instance 
+        
+        cat_ix : array-like of shape = [cat_columns_number]
+            List containing categorical feature indices
+        
+        cat_ix : array-like of shape = [x]
+            List containing missing values indicators
+
+        normalised: string
+            normalises euclidan distance function for numerical variables
+            Can be set as "variance". Default is a column range
+
+        Returns
+        -------
+        None
+        """      
+               
         self.nan_eqvs = nan_equivalents
         self.cat_ix = cat_ix
         self.col_ix = [i for i in range(X.shape[1])]

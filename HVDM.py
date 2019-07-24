@@ -3,6 +3,34 @@ from VDM import VDM
 
 class HVDM(VDM):
     def __init__(self, X , y_ix, cat_ix, nan_equivalents = [np.nan, 0], normalised="variance"):
+        """ Heterogeneous Value Difference Metric
+        Distance metric class which initializes the parameters
+        used in hvdm() function
+        
+        Parameters
+        ----------
+        X : array-like of shape = [n_rows, n_features]
+            First instance 
+            
+        y_ix : int array-like, list of shape [1]
+            Single element array with indices for categorical output variable
+            If y is numerical it should be converted to categorical (if it makes sense)
+        
+        cat_ix : array-like of shape = [cat_columns_number]
+            List containing categorical feature indices
+        
+        cat_ix : array-like of shape = [x]
+            List containing missing values indicators
+
+        normalised: string
+            normalises euclidan distance function for numerical variables
+            Can be set as "variance". The other option is a column range
+
+        Returns
+        -------
+        None
+        """        
+
         # Initialize VDM object
         super().__init__(X, y_ix, cat_ix)
         self.nan_eqvs = nan_equivalents

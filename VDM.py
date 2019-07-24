@@ -2,6 +2,26 @@ import numpy as np
 
 class VDM():
     def __init__(self, X, y_ix, cat_ix):
+        """ Value Difference Metric
+        Distance metric class which initializes the parameters
+        used in vdm() function
+        
+        Parameters
+        ----------
+        X : array-like of shape = [n_rows, n_features]
+            First instance 
+            
+        y_ix : int array-like, list of shape [1]
+            Single element array with indices for categorical output variable
+            If y is numerical it should be converted to categorical (if it makes sense)
+        
+        cat_ix : array-like of shape = [cat_columns_number]
+            List containing categorical feature indices
+    
+        Returns
+        -------
+        None
+        """           
         self.cat_ix = cat_ix
         self.col_ix = [i for i in range(X.shape[1])]
         self.y_ix = y_ix
@@ -68,7 +88,7 @@ class VDM():
             # Get indices to access the final_count array 
             x_ix = np.argwhere(self.unique_attributes[:, i] == x[i]).flatten()
             y_ix = np.argwhere(self.unique_attributes[:, i] == y[i]).flatten()
-
+            # Get the count to calculate the conditional probability
             N_ax = self.final_count[i, x_ix, -1].flatten()
             N_ay = self.final_count[i, y_ix, -1].flatten()
             N_axc = self.final_count[i, x_ix].flatten()

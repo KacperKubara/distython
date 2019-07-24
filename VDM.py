@@ -42,11 +42,11 @@ class VDM():
 
 
     def vdm(self, x, y):
-        """ Value Difference Metric
+      """ Value Difference Metric
         Distance metric function which calculates the distance
         between two instances. Handles heterogeneous data and missing values.
-        Uses conditional probability that the output class is given 'c' 
-        that attribute 'a' has a value of 'n'.
+        For categorical variables, it uses conditional probability 
+        that the output class is given 'c' when attribute 'a' has a value of 'n'.
         It can be used as a custom defined function for distance metrics
         in Scikit-Learn
         

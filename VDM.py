@@ -41,7 +41,7 @@ class VDM():
                     self.final_count[col, j, -1] = np.sum(self.final_count[col, j, :])
 
 
-    def vdm(self, x, y):
+    def vdm(self, x, y, nan_ix=[]):
         """ Value Difference Metric
         Distance metric function which calculates the distance
         between two instances. Handles heterogeneous data and missing values.
@@ -62,8 +62,8 @@ class VDM():
             Returns the result of the distance metrics function
         """
         result = np.zeros(len(x))
-
-        for i in self.cat_ix:
+        cat_ix = np.setdiff1d(self.cat_ix, nan_ix)
+        for i in cat_ix:
             # Get indices to access the final_count array 
             x_ix = np.argwhere(self.unique_attributes[:, i] == x[i]).flatten()
             y_ix = np.argwhere(self.unique_attributes[:, i] == y[i]).flatten()
@@ -79,5 +79,5 @@ class VDM():
                 print("Division by zero is not allowed!")
             result[i] = temp_result
 
-        return np.sum(result)
+        return result
     

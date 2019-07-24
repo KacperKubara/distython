@@ -33,7 +33,7 @@ for i in range(row_cnt):
             boston_data[i, j] = nan_eqv
 
 # Declare the HEOM with a correct NaN equivalent value
-heom_metric = HEOM(boston_data, categorical_ix, nan_equvialents = [nan_eqv])
+heom_metric = HEOM(boston_data, categorical_ix, nan_equivalents = [nan_eqv])
 
 # Declare NearestNeighbor and link the metric
 neighbor = NearestNeighbors(metric = heom_metric.heom)

@@ -6,7 +6,7 @@ Please feel free to help and contribute to the project as there is a lack of exi
 Clone the repository with `git clone`.
 Install the necessary packages with `pipenv install`
 
-# Example
+# Example - HEOM
 ```python
 # Example code of how the HEOM metric can be used together with Scikit-Learn
 import numpy as np

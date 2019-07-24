@@ -3,6 +3,8 @@ Implementation of state-of-the-art distance metrics from research papers which c
 At the moment, HEOM, HVDM and VDM are tested and working. VDM and HVDM has been released recently so please report bugs, if there are any.
 Please feel free to help and contribute to the project as there is a lack of existing implementations of hetergeneous distance metrics.
 # Installation
+**Recommended:** `pip install distython`
+**Alternatively:**
 Clone the repository with `git clone`.
 Install the necessary packages with `pipenv install`
 

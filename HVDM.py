@@ -1,6 +1,10 @@
-import numpy as np
-class HEOM():
-    def __init__(self, X, cat_ix, nan_equivalents = [np.nan, 0], normalised="normal"):
+import numpy as np 
+from VDM import VDM
+
+class HVDM(VDM):
+    def __init__(self, X , y_ix, cat_ix, nan_equivalents = [np.nan, 0], normalised="variance"):
+        # Initialize VDM object
+        super().__init__(X, y_ix, cat_ix)
         self.nan_eqvs = nan_equivalents
         self.cat_ix = cat_ix
         self.col_ix = [i for i in range(X.shape[1])]
@@ -10,9 +14,13 @@ class HEOM():
         else:
             self.range = np.nanmax(X, axis = 0) - np.nanmin(X, axis = 0)
     
-    def heom(self, x, y):
-        """ Distance metric function which calculates the distance
+    def hvdm(self, x, y):
+        """ Heterogeneous Value Difference Metric
+        Distance metric function which calculates the distance
         between two instances. Handles heterogeneous data and missing values.
+        For categorical variables, it uses conditional probability 
+        that the output class is given 'c' when attribute 'a' has a value of 'n'.
+        For numerical variables, it uses a normalized Euclidan distance.
         It can be used as a custom defined function for distance metrics
         in Scikit-Learn
         
@@ -41,15 +49,13 @@ class HEOM():
         # Get categorical indices without missing values elements
         cat_ix = np.setdiff1d(self.cat_ix, nan_ix)
         # Calculate the distance for categorical elements
-        results_array[cat_ix]= np.not_equal(x[cat_ix], y[cat_ix]) * 1 # use "* 1" to convert it into int
-
+        results_array[cat_ix] = super().vdm(x, y, nan_ix)[cat_ix]
         # Get numerical indices without missing values elements
         num_ix = np.setdiff1d(self.col_ix, self.cat_ix)
         num_ix = np.setdiff1d(num_ix, nan_ix)
         # Calculate the distance for numerical elements
         results_array[num_ix] = np.abs(x[num_ix] - y[num_ix]) / self.range[num_ix]
-        
         # Return the final result
         # Square root is not computed in practice
         # As it doesn't change similarity between instances
-        return np.sum(np.square(results_array))
+        return np.sum(np.square(results_array))        

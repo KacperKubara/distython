@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.neighbors import NearestNeighbors
 from sklearn.datasets import load_boston
 # Importing a custom metric class
-from HEOM import HEOM
+from distython import HEOM
 
 # Load the dataset from sklearn
 boston = load_boston()

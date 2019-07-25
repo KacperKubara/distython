@@ -52,5 +52,5 @@ result = neighbor.kneighbors(boston_data[0].reshape(1, -1), n_neighbors = 5)
 print(result)
 ```
 # Research Papers
-The code have implemented based on the following literature:  
+The code have been implemented based on the following literature:  
 -  HEOM, VDM and HVDM: https://arxiv.org/pdf/cs/9701101.pdf

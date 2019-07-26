@@ -1,6 +1,6 @@
-# distython
-## What is it
-It is an implementation of state-of-the-art distance metrics from research papers which can handle mixed-type data and missing values. At the moment, HEOM, HVDM and VDM are tested and working. VDM and HVDM has been released recently so please report bugs, if there are any.
+# Distython
+## Overview
+It is an implementation of state-of-the-art distance metrics from research papers which can handle mixed-type data and missing values. At the moment, HEOM, HVDM and VDM are tested and working. The implementation of the algorithms is done in Numpy to make it fast and efficient. VDM and HVDM has been released recently so please report bugs, if there are any.
 ## Why
 The aim of the package is to provide ready-to-use heterogeneous distance metrics which are compatible with Scikit-Learn.
 Please feel free to help and contribute to the project as there is a lack of existing implementations of hetergeneous distance metrics.

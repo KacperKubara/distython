@@ -1,5 +1,5 @@
 import numpy as np 
-from VDM import VDM
+from distython import VDM
 
 class HVDM(VDM):
     def __init__(self, X , y_ix, cat_ix, nan_equivalents = [np.nan, 0], normalised="variance"):

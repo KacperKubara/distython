@@ -1,9 +1,12 @@
-# distython
-Implementation of state-of-the-art distance metrics from research papers which can handle mixed-type data and missing values.
-At the moment, HEOM, HVDM and VDM are tested and working. VDM and HVDM has been released recently so please report bugs, if there are any.
+# Distython
+## Overview
+It is an implementation of state-of-the-art distance metrics from research papers which can handle mixed-type data and missing values. At the moment, HEOM, HVDM and VDM are tested and working. The implementation of the algorithms is done in Numpy to make it fast and efficient. VDM and HVDM has been released recently so please report bugs, if there are any.
+## Why
+The aim of the package is to provide ready-to-use heterogeneous distance metrics which are compatible with Scikit-Learn.
 Please feel free to help and contribute to the project as there is a lack of existing implementations of hetergeneous distance metrics.
 # Installation
-**Recommended:** `pip install distython`
+**Recommended:** 
+`pip install distython`
 
 **Alternatively:**
 Clone the repository with `git clone`.
@@ -16,7 +19,7 @@ import numpy as np
 from sklearn.neighbors import NearestNeighbors
 from sklearn.datasets import load_boston
 # Importing a custom metric class
-from HEOM import HEOM
+from distython import HEOM
 
 # Load the dataset from sklearn
 boston = load_boston()
@@ -49,5 +52,5 @@ result = neighbor.kneighbors(boston_data[0].reshape(1, -1), n_neighbors = 5)
 print(result)
 ```
 # Research Papers
-The code have implemented based on the following literature:
-HEOM, VDM and HVDM: https://arxiv.org/pdf/cs/9701101.pdf
+The code have been implemented based on the following literature:  
+-  HEOM, VDM and HVDM: https://arxiv.org/pdf/cs/9701101.pdf

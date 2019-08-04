@@ -18,7 +18,7 @@ class HEOM():
 
         normalised: string
             normalises euclidan distance function for numerical variables
-            Can be set as "variance". Default is a column range
+            Can be set as "std". Default is a column range
 
         Returns
         -------

@@ -24,7 +24,7 @@ class HVDM(VDM):
 
         normalised: string
             normalises euclidan distance function for numerical variables
-            Can be set as "variance". The other option is a column range
+            Can be set as "std". The other option is a column range
 
         Returns
         -------

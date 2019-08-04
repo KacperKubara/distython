@@ -2,15 +2,15 @@ import numpy as np
 from VDM import VDM
 
 class HVDM(VDM):
-    def __init__(self, X , y_ix, cat_ix, nan_equivalents = [np.nan, 0], normalised="variance"):
+    def __init__(self, X , y_ix, cat_ix, nan_equivalents = [np.nan, 0], normalised="std"):
         # Initialize VDM object
         super().__init__(X, y_ix, cat_ix)
         self.nan_eqvs = nan_equivalents
         self.cat_ix = cat_ix
         self.col_ix = [i for i in range(X.shape[1])]
         # Get the normalization scheme for numerical variables
-        if normalised == "variance":
-            self.range = 4* np.nanvar(X, axis = 0)
+        if normalised == "std":
+            self.range = 4* np.nanstd(X, axis = 0)
         else:
             self.range = np.nanmax(X, axis = 0) - np.nanmin(X, axis = 0)
     

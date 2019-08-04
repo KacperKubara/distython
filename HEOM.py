@@ -29,8 +29,8 @@ class HEOM():
         self.cat_ix = cat_ix
         self.col_ix = [i for i in range(X.shape[1])]
         # Get the normalization scheme for numerical variables
-        if normalised == "variance":
-            self.range = 4* np.nanvar(X, axis = 0)
+        if normalised == "std":
+            self.range = 4* np.nanstd(X, axis = 0)
         else:
             self.range = np.nanmax(X, axis = 0) - np.nanmin(X, axis = 0)
     

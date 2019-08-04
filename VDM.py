@@ -69,7 +69,6 @@ class VDM():
         that the output class is given 'c' when attribute 'a' has a value of 'n'.
         It can be used as a custom defined function for distance metrics
         in Scikit-Learn
-        
         Parameters
         ----------
         x : array-like of shape = [n_features]

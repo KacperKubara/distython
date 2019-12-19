@@ -2,7 +2,6 @@
 import numpy as np
 from sklearn.neighbors import NearestNeighbors
 from sklearn.datasets import load_boston
-# Importing a custom metric class
 from distython import HEOM
 
 # Load the dataset from sklearn

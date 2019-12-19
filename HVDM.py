@@ -1,8 +1,9 @@
 import numpy as np 
 from distython import VDM
 
+
 class HVDM(VDM):
-    def __init__(self, X , y_ix, cat_ix, nan_equivalents = [np.nan, 0], normalised="variance"):
+    def __init__(self, X , y_ix, cat_ix, nan_equivalents=[np.nan, 0], normalised="variance"):
         """ Heterogeneous Value Difference Metric
         Distance metric class which initializes the parameters
         used in hvdm() function
@@ -10,10 +11,12 @@ class HVDM(VDM):
         Parameters
         ----------
         X : array-like of shape = [n_rows, n_features]
-            First instance 
+            Dataset that will be used with HVDM. Needs to be provided
+            here because minimum and maximimum values from numerical
+            columns have to be extracted
             
         y_ix : int array-like, list of shape [1]
-            Single element array with indices for categorical output variable
+            Single element array with indices for the categorical output variable
             If y is numerical it should be converted to categorical (if it makes sense)
         
         cat_ix : array-like of shape = [cat_columns_number]
@@ -23,14 +26,13 @@ class HVDM(VDM):
             List containing missing values indicators
 
         normalised: string
-            normalises euclidan distance function for numerical variables
+            Normalises euclidan distance function for numerical variables
             Can be set as "std". The other option is a column range
 
         Returns
         -------
         None
         """        
-
         # Initialize VDM object
         super().__init__(X, y_ix, cat_ix)
         self.nan_eqvs = nan_equivalents
@@ -64,12 +66,12 @@ class HVDM(VDM):
         result: float
             Returns the result of the distance metrics function
         """
-        # Initialise results' array
+        # Initialise results array
         results_array = np.zeros(x.shape)
 
         # Get indices for missing values, if any
-        nan_x_ix = np.flatnonzero( np.logical_or(np.isin(x, self.nan_eqvs), np.isnan(x)))
-        nan_y_ix = np.flatnonzero( np.logical_or(np.isin(y, self.nan_eqvs), np.isnan(y)))
+        nan_x_ix = np.flatnonzero(np.logical_or(np.isin(x, self.nan_eqvs), np.isnan(x)))
+        nan_y_ix = np.flatnonzero(np.logical_or(np.isin(y, self.nan_eqvs), np.isnan(y)))
         nan_ix = np.unique(np.concatenate((nan_x_ix, nan_y_ix)))
         # Calculate the distance for missing values elements
         results_array[nan_ix] = 1
@@ -83,6 +85,7 @@ class HVDM(VDM):
         num_ix = np.setdiff1d(num_ix, nan_ix)
         # Calculate the distance for numerical elements
         results_array[num_ix] = np.abs(x[num_ix] - y[num_ix]) / self.range[num_ix]
+        
         # Return the final result
         # Square root is not computed in practice
         # As it doesn't change similarity between instances

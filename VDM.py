@@ -1,5 +1,6 @@
 import numpy as np 
 
+
 class VDM():
     def __init__(self, X, y_ix, cat_ix):
         """ Value Difference Metric
@@ -83,6 +84,7 @@ class VDM():
         """
         result = np.zeros(len(x))
         cat_ix = np.setdiff1d(self.cat_ix, nan_ix)
+        
         for i in cat_ix:
             # Get indices to access the final_count array 
             x_ix = np.argwhere(self.unique_attributes[:, i] == x[i]).flatten()

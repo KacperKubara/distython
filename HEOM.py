@@ -1,6 +1,8 @@
 import numpy as np
+
+
 class HEOM():
-    def __init__(self, X, cat_ix, nan_equivalents = [np.nan, 0], normalised="normal"):
+    def __init__(self, X, cat_ix, nan_equivalents=[np.nan, 0], normalised="normal"):
         """ Heterogeneous Euclidean-Overlap Metric
         Distance metric class which initializes the parameters
         used in heom function
@@ -8,7 +10,9 @@ class HEOM():
         Parameters
         ----------
         X : array-like of shape = [n_rows, n_features]
-            First instance 
+            Dataset that will be used with HEOM. Needs to be provided
+            here because minimum and maximimum values from numerical
+            columns have to be extracted
         
         cat_ix : array-like of shape = [cat_columns_number]
             List containing categorical feature indices

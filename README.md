@@ -1,9 +1,6 @@
-# Distython
-## Overview
-It is an implementation of state-of-the-art distance metrics from research papers which can handle mixed-type data and missing values. At the moment, HEOM, HVDM and VDM are tested and working. The implementation of the algorithms is done in Numpy to make it fast and efficient. VDM and HVDM has been released recently so please report bugs, if there are any.
-## Why
-The aim of the package is to provide ready-to-use heterogeneous distance metrics which are compatible with Scikit-Learn.
-Please feel free to help and contribute to the project as there is a lack of existing implementations of hetergeneous distance metrics.
+# Distython :straight_ruler:
+## About the project
+The aim of the package is to provide ready-to-use heterogeneous distance metrics which are compatible with Scikit-Learn. It is an implementation of state-of-the-art distance metrics from research papers which can handle mixed-type data and missing values. At the moment, HEOM, HVDM and VDM are tested and working. The implementation of the algorithms is done in Numpy to make it fast and efficient. VDM and HVDM has been released recently so please report bugs, if there are any.
 # Installation
 **Recommended:** 
 `pip install distython`
@@ -11,8 +8,10 @@ Please feel free to help and contribute to the project as there is a lack of exi
 **Alternatively:**
 Clone the repository with `git clone`.
 Install the necessary packages with `pipenv install`
+# Contributing
+Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to the package.
 
-# Example - HEOM
+# Getting started - HEOM example
 ```python
 # Example code of how the HEOM metric can be used together with Scikit-Learn
 import numpy as np
@@ -51,6 +50,9 @@ neighbor.fit(boston_data)
 result = neighbor.kneighbors(boston_data[0].reshape(1, -1), n_neighbors = 5)
 print(result)
 ```
-# Research Papers
-The code have been implemented based on the following literature:  
--  HEOM, VDM and HVDM: https://arxiv.org/pdf/cs/9701101.pdf
+# Authors
+- Kacper Kubara: www.kacperkubara.com
+# Acknowledgments
+-  The creation of the package was inspired by my research project at [IT Innovation Centre](http://www.it-innovation.soton.ac.uk/)
+- HEOM, HVDM, and VDM have been implemented based on the following literature:  https://arxiv.org/pdf/cs/9701101.pdf
+

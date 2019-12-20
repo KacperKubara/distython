@@ -51,6 +51,6 @@ result = neighbor.kneighbors(boston_data[0].reshape(1, -1), n_neighbors = 5)
 print(result)
 ```
 # Acknowledgments
--  The creation of the package was inspired by my research project at [IT Innovation Centre] (http://www.it-innovation.soton.ac.uk/)
+-  The creation of the package was inspired by my research project at [IT Innovation Centre](http://www.it-innovation.soton.ac.uk/)
 - HEOM, HVDM, and VDM have been implemented based on the following literature:  https://arxiv.org/pdf/cs/9701101.pdf
 

@@ -32,7 +32,13 @@ class HVDM(VDM):
         Returns
         -------
         None
-        """        
+        """ 
+        # Check if the numpy array is passed
+        if isinstance(X, np.ndarray) == False:
+            raise TypeError(f"The type of the array is: {type(X)}.\
+                            Please convert it to the numpy array instead.\
+                            All columns containing strings should be label encoded")
+       
         # Initialize VDM object
         super().__init__(X, y_ix, cat_ix)
         self.nan_eqvs = nan_equivalents
